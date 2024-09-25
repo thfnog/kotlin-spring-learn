@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Nogueira
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: task
+      changes:
+        - createTable:
+            tableName: task
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(250)
+  - changeSet:
+      id: 2
+      author: Nogueira
+      changes:
+        - insert:
+            tableName: task
+            columns:
+              - column:
+                  name: id
+                  value: "1"
+              - column:
+                  name: name
+                  value: "Buy milk"
+              - column:
+                  name: status
+                  value: "Done"
