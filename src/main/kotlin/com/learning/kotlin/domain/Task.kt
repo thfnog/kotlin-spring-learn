@@ -1,9 +1,10 @@
 package com.learning.kotlin.domain
 
+import com.learning.kotlin.dto.TaskDto
 import jakarta.persistence.*
 
 @Entity
-class Task (
+class Task(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
@@ -17,4 +18,6 @@ class Task (
 
         requireNotNull(status)
     }
+
+    fun toDto() = TaskDto(id, name, status)
 }
